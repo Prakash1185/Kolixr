@@ -44,7 +44,7 @@ const InputForm = ({ onGenerate, loading }) => {
           required
           name="description"
           placeholder="Describe about your project. e.g. A modern SaaS dashboard for startups. Needs sleek, professional UI with a dark theme and vibrant accents."
-          className="min-h-36 sm:max-h-28 text-sm"
+          className="min-h-36 sm:min-h-24 sm:max-h-28 text-sm"
         />
       </div>
 
