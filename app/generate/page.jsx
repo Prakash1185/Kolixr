@@ -14,17 +14,27 @@ const Generate = () => {
   const handleGenerate = async (formData) => {
     setLoading(true);
 
-    const paletteSize = formData.paletteSize || 5;
+    const paletteSize = Number(formData.paletteSize) || 5;
+
+    // Dynamic role names for the palette items
+    const roles = [
+      "Primary Color",
+      "Secondary Color",
+      "Accent Color",
+      "Background Color",
+      "Text Color",
+    ].slice(0, paletteSize);
+
+    const rolePattern = roles
+      .map((role, idx) => `  ${idx + 1}. ${role}`)
+      .join("\n");
+
     const prompt = `You are an expert UI/brand color designer. Your task is to generate 6 distinct and usable color palettes for a design system.
 
 🎨 Each palette must:
 - Contain exactly ${paletteSize} HEX color codes.
 - Follow this strict role pattern:
-  1. Primary Color
-  2. Secondary Color
-  3. Accent Color
-  4. Background Color
-  5. Text Color
+${rolePattern}
 
 🧠 Design Brief:
 - Project Description: ${
@@ -45,8 +55,11 @@ const Generate = () => {
 - Ensure high readability — background and text colors must contrast well.
 
 📦 Output Format:
-Only return an array of 6 palettes. Each palette must be in this exact order:
-["#Primary", "#Secondary", "#Accent", "#Background", "#Text"]
+Only return an array of 6 palettes. Each palette must contain exactly ${paletteSize} HEX codes, in the correct order.
+Example (for ${paletteSize} colors):
+["#FF0000", "#00FF00", "#0000FF", ...]
+
+Strictly follow the given palette size and do not add extra color values. Respond only with valid JSON.
 
 🚫 Do not include any extra text — only raw JSON array of arrays.`;
 
@@ -65,16 +78,17 @@ Only return an array of 6 palettes. Each palette must be in this exact order:
         throw new Error("API Error");
       }
 
-      const extracted = data.text
-        .match(/\[[^\]]+\]/g)
+      const rawPalettes = data.text.match(/\[[^\]]+\]/g) || [];
+
+      const extracted = rawPalettes
         .map((str) =>
           str
             .replace(/\[|\]|"|'/g, "")
             .split(",")
             .map((c) => c.trim())
         )
-        .filter((arr) => Array.isArray(arr) && arr.length > 0)
-        .slice(0, 6);
+        .filter((arr) => arr.length === paletteSize)
+        .slice(0, 6); // only keep 6 palettes max
 
       if (extracted.length === 0) {
         toast.error("No palettes found.");

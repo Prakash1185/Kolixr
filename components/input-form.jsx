@@ -43,7 +43,7 @@ const InputForm = ({ onGenerate, loading }) => {
         <Textarea
           required
           name="description"
-          placeholder="Describe about your project and requirements of colors..."
+          placeholder="Describe about your project. e.g. A modern SaaS dashboard for startups. Needs sleek, professional UI with a dark theme and vibrant accents."
           className="min-h-20 max-h-28"
         />
       </div>
@@ -52,18 +52,18 @@ const InputForm = ({ onGenerate, loading }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-6">
         <div className="w-full">
           <Label className="block mb-1">Primary Color</Label>
-          <Input name="primaryColor" type="text" placeholder="#FFDE21, Red, etc." />
+          <Input name="primaryColor" type="text" placeholder="#4F46E5 or Indigo" />
         </div>
         <div className="w-full">
           <Label className="block mb-1">Secondary Color</Label>
-          <Input name="secondaryColor" type="text" placeholder="#000000, Gray, etc." />
+          <Input name="secondaryColor" type="text" placeholder=" #F43F5E or Rose" />
         </div>
         <div className="w-full">
           <Label className="block mb-1">Color Preference Keywords</Label>
           <Input
             name="colorPreference"
             type="text"
-            placeholder="Pastel, Neon, etc."
+            placeholder="e.g. pastel, neon, muted"
           />
         </div>
       </div>
@@ -93,7 +93,7 @@ const InputForm = ({ onGenerate, loading }) => {
               <SelectValue placeholder="Choose number" />
             </SelectTrigger>
             <SelectContent>
-              {[2, 3, 4, 5, 6].map((num) => (
+              {[3, 4, 5, 6].map((num) => (
                 <SelectItem key={num} value={num.toString()}>
                   {num}
                 </SelectItem>
@@ -167,7 +167,7 @@ const InputForm = ({ onGenerate, loading }) => {
       <div className="pt-2">
         <Button
           type="submit"
-          className="w-full text-lg bg-indigo-600 hover:bg-indigo-700 transition-all"
+          className="w-full text-lg bg-indigo-600 hover:bg-indigo-700 transition-all cursor-pointer"
           size="lg"
           disabled={loading}
         >
