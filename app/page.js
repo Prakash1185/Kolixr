@@ -1,8 +1,11 @@
 import Homepage from "@/components/homepage";
-import Image from "next/image";
+import { Analytics } from "@vercel/analytics/next";
 
 export default function Home() {
   return (
-    <Homepage/>
+    <>
+      <Homepage />
+      <Analytics />
+    </>
   );
 }
