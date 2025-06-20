@@ -43,7 +43,7 @@ const InputForm = ({ onGenerate, loading }) => {
         <Textarea
           required
           name="description"
-          placeholder="Briefly describe your project..."
+          placeholder="Describe about your project and requirements of colors..."
           className="min-h-20 max-h-28"
         />
       </div>
