@@ -54,7 +54,7 @@ Only return an array of 6 palettes. Each palette must be in this exact order:
 
     try {
       const genAI = new GoogleGenerativeAI(
-        process.env.NEXT_PUBLIC_GEMINI_API_KEY
+        process.env.GEMINI_API_KEY
       );
       const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
