@@ -29,19 +29,17 @@ const InputForm = ({ onGenerate, loading }) => {
       background: form.get("background"),
       usage: form.get("usage"),
       audience: form.get("audience"),
-      inspiration: form.get("inspiration"), 
+      inspiration: form.get("inspiration"),
     };
 
     onGenerate(formData);
   };
 
   return (
-    <form className="pt-5 max-w-6xl mx-auto space-y-6" onSubmit={handleSubmit}>
+    <form className="pt-5 max-w-6xl mx-auto space-y-6 px-4 sm:px-6" onSubmit={handleSubmit}>
       {/* Project Description */}
       <div>
-        <Label className="block mb-1 text-base font-medium">
-          Project Description 
-        </Label>
+        <Label className="block mb-1 text-base font-medium">Project Description</Label>
         <Textarea
           required
           name="description"
@@ -50,8 +48,8 @@ const InputForm = ({ onGenerate, loading }) => {
         />
       </div>
 
-      {/* Primary, Secondary & Preference */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      {/* Primary, Secondary & Color Preference */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-6">
         <div className="w-full">
           <Label className="block mb-1">Primary Color</Label>
           <Input name="primaryColor" type="text" placeholder="#FFDE21, Red, etc." />
@@ -65,13 +63,13 @@ const InputForm = ({ onGenerate, loading }) => {
           <Input
             name="colorPreference"
             type="text"
-            placeholder="e.g., pastel, neon, earthy..."
+            placeholder="Pastel, Neon, etc."
           />
         </div>
       </div>
 
-      {/* Select Inputs */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+      {/* Select Inputs Row 1 */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-6">
         <div className="w-full">
           <Label className="block mb-1">Tone</Label>
           <Select name="tone">
@@ -79,13 +77,11 @@ const InputForm = ({ onGenerate, loading }) => {
               <SelectValue placeholder="Select tone" />
             </SelectTrigger>
             <SelectContent>
-              {["Calm", "Bold", "Neutral", "Vibrant", "Luxurious"].map(
-                (tone) => (
-                  <SelectItem key={tone} value={tone.toLowerCase()}>
-                    {tone}
-                  </SelectItem>
-                )
-              )}
+              {["Calm", "Bold", "Neutral", "Vibrant", "Luxurious"].map((tone) => (
+                <SelectItem key={tone} value={tone.toLowerCase()}>
+                  {tone}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
@@ -123,8 +119,8 @@ const InputForm = ({ onGenerate, loading }) => {
         </div>
       </div>
 
-      {/* Usage, Audience, Inspiration */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      {/* Select Inputs Row 2 */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-6">
         <div className="w-full">
           <Label className="block mb-1">Usage Context</Label>
           <Select name="usage">
@@ -132,13 +128,11 @@ const InputForm = ({ onGenerate, loading }) => {
               <SelectValue placeholder="Select usage" />
             </SelectTrigger>
             <SelectContent>
-              {["App", "Website", "Print", "Graphics", "Presentation"].map(
-                (use) => (
-                  <SelectItem key={use} value={use.toLowerCase()}>
-                    {use}
-                  </SelectItem>
-                )
-              )}
+              {["App", "Website", "Print", "Graphics", "Presentation"].map((use) => (
+                <SelectItem key={use} value={use.toLowerCase()}>
+                  {use}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
@@ -164,7 +158,7 @@ const InputForm = ({ onGenerate, loading }) => {
           <Input
             name="inspiration"
             type="text"
-            placeholder="e.g., Nature, Netflix UI, Vintage posters..."
+            placeholder="Nature, Dreamy, etc"
           />
         </div>
       </div>
