@@ -42,26 +42,30 @@ const Generate = () => {
 🧪 Constraints:
 - Each palette should contain clearly different colors in terms of hue and usage.
 - Avoid using shades of the same color (e.g., don't make all five colors different tints of blue).
-- Respect any provided hints, but build cohesive, accessible combinations.
 - Ensure high readability — background and text colors must contrast well.
-- Use color theory to make the palette harmonious but useful for real UI/branding work.
 
 📦 Output Format:
 Only return an array of 6 palettes. Each palette must be in this exact order:
 ["#Primary", "#Secondary", "#Accent", "#Background", "#Text"]
 
-🚫 Do not include any extra text, labels, or comments — only a raw JSON array of arrays.`;
+🚫 Do not include any extra text — only raw JSON array of arrays.`;
 
     try {
-      const genAI = new GoogleGenerativeAI(
-        process.env.GEMINI_API_KEY
-      );
-      const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+      const response = await fetch("/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ prompt }),
+      });
 
-      const result = await model.generateContent(prompt);
-      const text = result.response.text();
-      // console.log(text);
-      const extracted = text
+      const data = await response.json();
+
+      if (!response.ok || !data.text) {
+        throw new Error("API Error");
+      }
+
+      const extracted = data.text
         .match(/\[[^\]]+\]/g)
         .map((str) =>
           str
@@ -73,16 +77,15 @@ Only return an array of 6 palettes. Each palette must be in this exact order:
         .slice(0, 6);
 
       if (extracted.length === 0) {
-        toast.error("Something went wrong!");
+        toast.error("No palettes found.");
       } else {
         setPalettes(extracted);
-        // toast.success("Generated color palettes successfully!");
         setTimeout(() => {
           resultsRef.current?.scrollIntoView({ behavior: "smooth" });
         }, 300);
       }
     } catch (err) {
-      //   console.error(err);
+      console.error("Client Error:", err);
       toast.error("Failed to generate palettes. Please try again.");
     } finally {
       setLoading(false);

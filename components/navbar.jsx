@@ -9,8 +9,8 @@ const Navbar = () => {
     <nav className="flex items-center gap-6 py-3.5 px-6 sm:px-10 md:px-20 border-b border-gray-400/30">
       {/* Logo and Nav Links Grouped Together */}
       <div className="flex items-center gap-3">
-        <Link href="/" className="text-3xl font-semibold">
-          Colaro
+        <Link href="/" className="text-3xl font-extrabold ">
+          Kolixr
         </Link>
 
         {/* Separator */}
