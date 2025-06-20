@@ -10,10 +10,10 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-// Optional: If you're using metadata in a JS project, remove or redefine it as plain object if needed by Next.js App Router
 export const metadata = {
-  title: "AI Color Palettes Generator",
-  description: "An AI powered website for all your color palattes need.",
+  title: "Kolixr – AI Color Palette Generator",
+  description:
+    "Generate stunning, custom color palettes instantly with Kolixr – your AI-powered color design assistant for web, UI, branding, and more.",
 };
 
 export default function RootLayout({ children }) {
