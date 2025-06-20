@@ -75,8 +75,7 @@ const Homepage = () => {
           variants={fadeUp}
           className="text-sm sm:text-lg md:text-xl text-gray-700 mt-3 sm:leading-8 max-w-sm sm:max-w-xl md:max-w-3xl"
         >
-          Instantly generate beautiful, custom color palettes using AI — no
-          design skills needed. Perfect for devs, designers, and curious minds.
+          Instantly generate beautiful, custom color palettes using AI —  Perfect for devs, designers, and curious minds.
         </motion.p>
 
         {/* CTA Button */}

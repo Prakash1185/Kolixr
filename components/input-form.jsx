@@ -44,26 +44,26 @@ const InputForm = ({ onGenerate, loading }) => {
           required
           name="description"
           placeholder="Describe about your project. e.g. A modern SaaS dashboard for startups. Needs sleek, professional UI with a dark theme and vibrant accents."
-          className="min-h-20 max-h-28"
+          className="min-h-36 sm:max-h-28 text-sm"
         />
       </div>
 
       {/* Primary, Secondary & Color Preference */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-6 ">
         <div className="w-full">
           <Label className="block mb-1">Primary Color</Label>
-          <Input name="primaryColor" type="text" placeholder="#4F46E5 or Indigo" />
+          <Input name="primaryColor" type="text" placeholder="#4F46E5 or Indigo"  className={"text-sm"}/>
         </div>
         <div className="w-full">
           <Label className="block mb-1">Secondary Color</Label>
-          <Input name="secondaryColor" type="text" placeholder=" #F43F5E or Rose" />
+          <Input name="secondaryColor" type="text" placeholder=" #F43F5E or Rose"  className={"text-sm"}/>
         </div>
         <div className="w-full">
           <Label className="block mb-1">Color Preference Keywords</Label>
           <Input
             name="colorPreference"
             type="text"
-            placeholder="e.g. pastel, neon, muted"
+            placeholder="e.g. pastel, neon, muted" className={"text-sm"}
           />
         </div>
       </div>
@@ -159,6 +159,7 @@ const InputForm = ({ onGenerate, loading }) => {
             name="inspiration"
             type="text"
             placeholder="Nature, Dreamy, etc"
+            className={"text-sm"}
           />
         </div>
       </div>
